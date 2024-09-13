@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'; 
 import axios from 'axios';
 
 const periods = [
@@ -19,11 +20,12 @@ const Historico = () => {
   const [minValue, setMinValue] = useState('');
   const [maxValue, setMaxValue] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
+  const { userId } = useParams(); 
 
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/transacoes/');
+        const response = await axios.get(`http://localhost:3000/transacoes?remetente=${userId}`);
         setTransactions(response.data);
         setFilteredTransactions(response.data);
       } catch (error) {
@@ -151,7 +153,7 @@ const Historico = () => {
             <p>Tipo: {transaction.tipo}</p>
             <p>Data: {transaction.data}</p>
             <p>Valor: R${transaction.valor}</p>
-            <p>Saldo: {/* Aqui você pode adicionar o cálculo do saldo com base nas transações */}</p>
+            <p>Saldo: </p>
             {transaction.tipo === 'TED' && (
               <>
                 <p>Banco Favorecido: {transaction.banco_favorecido}</p>

@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/pages/Home.css';
+import { Link } from 'react-router-dom';
 import Cadastro from '../pages/Transactions';
+import { featchBancoUsuarios  } from '../api/api';
 
 const Home = () => {
+  const [usuarios, setUsuarios] = useState([]);
+  const [usuarioLogado, setUsuarioLogado] = useState(null);
+
+  useEffect(() => {
+    featchBancoUsuarios ()
+      .then(response => {
+        setUsuarios(response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar usuários:', error);
+      });
+      const usuarioLocalStorage = localStorage.getItem('usuario');
+      if (usuarioLocalStorage) {
+        setUsuarioLogado(JSON.parse(usuarioLocalStorage));
+      }
+    }, []);
+
+  usuarioLogado && console.log(usuarios.find(usuario => usuario.id === usuarioLogado.id));
+
   return (
     <div>
     <div className="container-button">
@@ -21,18 +42,28 @@ const Home = () => {
     </div>
     <div className="value-card">
       <div className="value-content">
-        <h2 className="value-balance">R$ 1.500,00</h2>
-        <p className="listar-info">Listar</p>
-        <Cadastro />
+      {usuarioLogado && (
+            <div>
+            <h2>Bem-vindo, {usuarioLogado.nome}!</h2>
+            {usuarios.find(usuario => usuario.id === usuarioLogado.id) && ( 
+              <h2 className="value-balance">R$ {usuarios.find(usuario => usuario.id === usuarioLogado.id).saldo?.toFixed(2) || '0.00'}</h2>
+            )}            
+            <Link to={`/lista/${usuarioLogado.id}`}>              <> 
+                <p className="listar-info">Listar</p>              
+                
+              </>
+            </Link> 
+            <Cadastro /> 
+          </div>        
+       )}
+
+        
       </div>
       <div className="banner-advertising">
         <p>Espaço para Banner</p>
       </div>
     </div>
-    </div>
-
-
-    
+    </div>    
   );
 }
 

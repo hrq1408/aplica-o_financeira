@@ -20,6 +20,7 @@ export const Login = async (email, senha) => {
 
       localStorage.setItem('token', token);
       localStorage.setItem('usuario', JSON.stringify(usuario));
+      
       return { success: true, token, usuario };
     } else {
       return { success: false, error: 'Credenciais inválidas!' };

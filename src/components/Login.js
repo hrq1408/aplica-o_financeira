@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/components/Login.css';
 
 function Login({ isOpen, onClose }) {
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState(null);
@@ -14,12 +15,29 @@ function Login({ isOpen, onClose }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const resultadoLogin = await Login(email, senha);
+    try {
+      const response = await axios.get('http://localhost:3000/usuarios', {
+        params: {
+          email: email,
+          senha: senha 
+        }
+      });
 
-    if (resultadoLogin.success) {
-      navigate('/home'); 
-    } else {
-      setErro(resultadoLogin.error);
+      if (response.data.length > 0) {
+        const usuario = response.data[0];
+
+        const token = 'seu_token_jwt_simulado'; 
+
+        localStorage.setItem('token', token);
+        localStorage.setItem('usuario', JSON.stringify({ id: usuario.id, nome: usuario.nome })); 
+        onClose(); 
+        navigate('/home'); 
+      } else {
+        setErro('Credenciais inválidas!');
+      }
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      setErro('Ocorreu um erro ao fazer login. Tente novamente mais tarde.');
     }
   };
 
@@ -31,7 +49,7 @@ function Login({ isOpen, onClose }) {
         {erro && <div className="error">{erro}</div>} 
         <form onSubmit={handleSubmit}>
           <div className="form-g">
-            <label htmlFor="email">Usuário (email):</label> {/* Alterado para email */}
+            <label htmlFor="email">Usuário (email):</label>
             <input 
               type="email" 
               id="email" 
