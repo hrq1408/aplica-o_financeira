@@ -1,0 +1,112 @@
+{
+    "usuarios": [
+      {
+        "id": 1,
+        "nome": "João da Silva",
+        "email": "joao@example.com",
+        "senha": "senha_segura_joao", 
+        "saldo": 2500.00,
+        "senhaTransacao": "1234" 
+      },
+      {
+        "id": 2,
+        "nome": "Maria Santos",
+        "email": "maria@example.com",
+        "senha": "senha_segura_maria", 
+        "saldo": 4000.00,
+        "senhaTransacao": "5678" 
+      },
+      {
+        "id": 3,
+        "nome": "Pedro Oliveira",
+        "email": "pedro@example.com",
+        "senha": "senha_segura_pedro", 
+        "saldo": 6500.00,
+        "senhaTransacao": "9012" 
+      },
+      {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com",
+        "senha": "senha_segura_ana", 
+        "saldo": 1000.00,
+        "senhaTransacao": "3456" 
+      },
+      {
+        "id": 5,
+        "nome": "Carlos Rodrigues",
+        "email": "carlos@example.com",
+        "senha": "senha_segura_carlos", 
+        "saldo": 9700.00,
+        "senhaTransacao": "7890" 
+      }
+    ],
+    "transacoes": [
+      {
+        "id": 1,
+        "tipo": "TED",
+        "data": "2023-11-20",
+        "remetente": 1, 
+        "cpf_cnpj_favorecido": "98765432109",
+        "nome_favorecido": "Maria Souza",
+        "banco_favorecido": "341",
+        "agencia_favorecido": "5678",
+        "conta_favorecido": "12345-6",
+        "valor": 2000.00
+      },
+      {
+        "id": 2,
+        "tipo": "PIX",
+        "data": "2023-11-22",
+        "remetente": 1,
+        "cpf_cnpj_favorecido": "55555555555",
+        "nome_favorecido": "Carlos Santos",
+        "chave_pix": "carlos@email.com",
+        "valor": 500.00
+      },
+      {
+        "id": 3,
+        "tipo": "TED",
+        "data": "2023-11-21",
+        "remetente": 2, 
+        "cpf_cnpj_favorecido": "12345678901",
+        "nome_favorecido": "João da Silva",
+        "banco_favorecido": "001",
+        "agencia_favorecido": "9876",
+        "conta_favorecido": "65432-1",
+        "valor": 1000.00
+      },
+      {
+        "id": 4,
+        "tipo": "PIX",
+        "data": "2023-11-23",
+        "remetente": 3,
+        "cpf_cnpj_favorecido": "23456789012",
+        "nome_favorecido": "Maria Santos",
+        "chave_pix": "maria@email.com",
+        "valor": 1500.00 
+      },
+      {
+        "id": 5,
+        "tipo": "TED",
+        "data": "2023-11-19",
+        "remetente": 4, 
+        "cpf_cnpj_favorecido": "34567890123",
+        "nome_favorecido": "Pedro Oliveira",
+        "banco_favorecido": "237",
+        "agencia_favorecido": "4321",
+        "conta_favorecido": "98765-4",
+        "valor": 1500.00
+      },
+      {
+        "id": 6,
+        "tipo": "PIX",
+        "data": "2023-11-22",
+        "remetente": 5,
+        "cpf_cnpj_favorecido": "45678901234",
+        "nome_favorecido": "Ana Pereira",
+        "chave_pix": "ana@email.com",
+        "valor": 300.00
+      }      
+    ]
+  }

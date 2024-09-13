@@ -1,0 +1,17 @@
+header {
+    background-color: blue;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+}
+
+.bank {
+    position: 'absolute';
+    right: '20px';
+    top: '50%';
+    transform: 'translateY(-50%)';
+    cursor: 'pointer';
+}
