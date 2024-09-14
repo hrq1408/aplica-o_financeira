@@ -4,10 +4,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: hsl(242deg 72.37% 19.19% / 87%);
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .login-title {
+    color: blue;
   }
   
   .popup-geral {
@@ -39,14 +43,14 @@
   }
   
   .form-g input {
-    width: 100%;
+    width: 90%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
   
   button {
-    padding: 10px 15px;
+    padding: 20px 125px;
     border: none;
     border-radius: 4px;
     background: blue;

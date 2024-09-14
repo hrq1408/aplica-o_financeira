@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchTransacoesPorUsuario } from '../api/api';
+import { fetchTransacoesPorUsuario } from '../services/transactionService';
 
 const TransactionList = () => {
   const { userId } = useParams(); 
   const [transacoes, setTransacoes] = useState([]);
-
   useEffect(() => {
     fetchTransacoesPorUsuario(userId)
       .then(response => setTransacoes(response.data));
@@ -19,8 +18,7 @@ const TransactionList = () => {
           <li key={transacao.id}>
             <p>Tipo: {transacao.tipo}</p>
             <p>Data: {transacao.data}</p>
-            <p>Valor: R${transacao.valor.toFixed(2)}</p> {/* Formatando o valor */}
-            {/* Lógica para exibir informações específicas de TED ou PIX */}
+            <p>Valor: R${transacao.valor.toFixed(2)}</p>
             {transacao.tipo === 'TED' && (
               <>
                 <p>Banco Favorecido: {transacao.banco_favorecido}</p>

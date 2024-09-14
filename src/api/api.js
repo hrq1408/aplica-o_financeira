@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api_banco = 'http://localhost:3000'; 
+const api_banco = 'http://localhost:3001'; 
 
 export const featchBancoUsuarios = () => {
     return axios.get(`${api_banco}/usuarios`);
