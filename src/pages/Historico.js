@@ -25,7 +25,7 @@ const Historico = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/transacoes?remetente=${userId}`);
+        const response = await axios.get(`http://localhost:3001/transacoes?remetente=${userId}`);
         setTransactions(response.data);
         setFilteredTransactions(response.data);
       } catch (error) {

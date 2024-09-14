@@ -55,9 +55,7 @@ const Home = () => {
             </Link> 
             <Cadastro /> 
           </div>        
-       )}
-
-        
+       )}        
       </div>
       <div className="banner-advertising">
         <p>Espaço para Banner</p>

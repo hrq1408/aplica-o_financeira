@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/components/Login.css';
+import { useDispatch } from 'react-redux';
+import {login} from '../redux/authSlice';
 
 function Login({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,14 +11,16 @@ function Login({ isOpen, onClose }) {
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch(); 
 
   if (!isOpen) return null;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
 
     try {
-      const response = await axios.get('http://localhost:3000/usuarios', {
+      const response = await axios.get('http://localhost:3001/usuarios', {
         params: {
           email: email,
           senha: senha 
@@ -25,13 +29,13 @@ function Login({ isOpen, onClose }) {
 
       if (response.data.length > 0) {
         const usuario = response.data[0];
-
         const token = 'seu_token_jwt_simulado'; 
 
-        localStorage.setItem('token', token);
-        localStorage.setItem('usuario', JSON.stringify({ id: usuario.id, nome: usuario.nome })); 
-        onClose(); 
+        dispatch(login({ usuario, token }));
         navigate('/home'); 
+
+        localStorage.setItem('token', token);
+        localStorage.setItem('usuario', JSON.stringify({ id: usuario.id, nome: usuario.nome }));        
       } else {
         setErro('Credenciais inválidas!');
       }
@@ -53,7 +57,7 @@ function Login({ isOpen, onClose }) {
             <input 
               type="email" 
               id="email" 
-              name="email"  // Alterado para email
+              name="email"
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               required 
