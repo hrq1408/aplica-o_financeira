@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom'; 
+import { useParams } from 'react-router-dom';
 import { fetchTransactions } from '../../services/transactionService';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
-import { featchBancoUsuarios  } from '../../api/api';
+import { featchBancoUsuarios } from '../../api/api';
 import Menu from '../../components/Menu';
 
 const periods = [
@@ -26,35 +26,35 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
   const { userId } = useParams();
   const [usuarios, setUsuarios] = useState([]);
   const [usuarioLogado, setUsuarioLogado] = useState(null);
-  
+
 
   useEffect(() => {
-    featchBancoUsuarios ()
+    featchBancoUsuarios()
       .then(response => {
         setUsuarios(response.data);
       })
       .catch(error => {
         console.error('Erro ao buscar usuários:', error);
       });
-      const usuarioLocalStorage = localStorage.getItem('usuario');
-      if (usuarioLocalStorage) {
-        setUsuarioLogado(JSON.parse(usuarioLocalStorage));
-      }
-    }, []);
+    const usuarioLocalStorage = localStorage.getItem('usuario');
+    if (usuarioLocalStorage) {
+      setUsuarioLogado(JSON.parse(usuarioLocalStorage));
+    }
+  }, []);
 
   useEffect(() => {
     const fetchAndSetTransactions = async () => {
       try {
         const data = await fetchTransactions(userId);
         setTransactions(data);
-        setFilteredTransactions(data); 
+        setFilteredTransactions(data);
       } catch (error) {
         // Handle error appropriately
       }
     };
 
     fetchAndSetTransactions();
-  }, [userId]); 
+  }, [userId]);
 
   useEffect(() => {
     const filterTransactions = () => {
@@ -71,7 +71,7 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
       }
 
       if (startDate && endDate) {
-        filtered = filtered.filter(transaction => 
+        filtered = filtered.filter(transaction =>
           new Date(transaction.data) >= new Date(startDate) &&
           new Date(transaction.data) <= new Date(endDate)
         );
@@ -85,8 +85,8 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
       }
 
       filtered.sort((a, b) => {
-        return sortOrder === 'asc' 
-          ? new Date(a.data) - new Date(b.data) 
+        return sortOrder === 'asc'
+          ? new Date(a.data) - new Date(b.data)
           : new Date(b.data) - new Date(a.data);
       });
 
@@ -94,10 +94,10 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
     };
 
     filterTransactions();
-    onFilterChange(filteredTransactions); 
+    onFilterChange(filteredTransactions);
   }, [typeFilter, periodFilter, startDate, endDate, minValue, maxValue, sortOrder, transactions]);
 
-  return (  
+  return (
     <div className="home-container">
       <Menu />
       <div className="container-form">
@@ -106,7 +106,7 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
             { label: 'Todos', value: '' },
             { label: 'TED', value: 'TED' },
             { label: 'PIX', value: 'PIX' },
-          ]} /> 
+          ]} />
         </label>
 
         <label>
@@ -114,42 +114,42 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
           <Select value={periodFilter || ''} onChange={e => setPeriodFilter(Number(e.target.value) || null)} options={[
             { label: 'Selecionar', value: '' },
             ...periods
-          ]} /> 
+          ]} />
         </label>
 
         <label>
           Data Inicial:
-          <Input 
-            type="date" 
-            value={startDate} 
-            onChange={e => setStartDate(e.target.value)} 
+          <Input
+            type="date"
+            value={startDate}
+            onChange={e => setStartDate(e.target.value)}
           />
         </label>
 
         <label>
           Data Final:
-          <Input 
-            type="date" 
-            value={endDate} 
-            onChange={e => setEndDate(e.target.value)} 
+          <Input
+            type="date"
+            value={endDate}
+            onChange={e => setEndDate(e.target.value)}
           />
         </label>
 
         <label>
           Valor Mínimo:
-          <Input 
-            type="number" 
-            value={minValue} 
-            onChange={e => setMinValue(e.target.value)} 
+          <Input
+            type="number"
+            value={minValue}
+            onChange={e => setMinValue(e.target.value)}
           />
         </label>
 
         <label>
           Valor Máximo:
-          <Input 
-            type="number" 
-            value={maxValue} 
-            onChange={e => setMaxValue(e.target.value)} 
+          <Input
+            type="number"
+            value={maxValue}
+            onChange={e => setMaxValue(e.target.value)}
           />
         </label>
 
@@ -158,7 +158,7 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
           <Select value={sortOrder} onChange={e => setSortOrder(e.target.value)} options={[
             { label: 'Mais Antigo', value: 'asc' },
             { label: 'Mais Recente', value: 'desc' },
-          ]} /> 
+          ]} />
         </label>
       </div>
 

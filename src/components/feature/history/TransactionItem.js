@@ -1,8 +1,6 @@
 import React from "react";
 
 const TransactionItem = ({ transaction }) => {
-    
-    console.log('teste2', JSON.stringify(transaction, null, 2))
 
   return (
     <li>

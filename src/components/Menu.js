@@ -1,43 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { featchBancoUsuarios  } from '../api/api';
+import '../styles/components/Menu.css';
 
 const Menu = () => {
-    const [usuarios, setUsuarios] = useState([]);
-    const [usuarioLogado, setUsuarioLogado] = useState(null);
 
+  const [usuarioLogado, setUsuarioLogado] = useState(null);
   useEffect(() => {
-    featchBancoUsuarios ()
-      .then(response => {
-        setUsuarios(response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao buscar usuários:', error);
-      });
-      const usuarioLocalStorage = localStorage.getItem('usuario');
-      if (usuarioLocalStorage) {
-        setUsuarioLogado(JSON.parse(usuarioLocalStorage));
-      }
-    }, []);
+
+    const usuarioLocalStorage = localStorage.getItem('usuario');
+    if (usuarioLocalStorage) {
+      setUsuarioLogado(JSON.parse(usuarioLocalStorage));
+    }
+  }, []);
 
   return (
-    <aside className="sidebar">        
-    <nav>
-    {usuarioLogado && (
-      <ul>
-     <Link to={`/home`}>              
-        <p className="listar-info"><li>Home</li></p>              
-    </Link>   
-        
-        
-    <Link to={`/lista/${usuarioLogado.id}`}>            
-        <p className="listar-info"><li >Antecipar</li></p>           
-    </Link>            
-      </ul>
-       )}  
-    </nav>
-  </aside>
-    );
+    <aside className="sidebar">
+      <div class="avatar">
+        <div class="avatar__img">
+          <img src="https://picsum.photos/70" alt="avatar"></img>
+        </div>
+        <div class="avatar__name">{usuarioLogado && (usuarioLogado.nome)}</div>
+      </div>
+      <nav className="menu">
+
+        {usuarioLogado && (
+          <ul>
+            <Link className="menu__item" to={`/home`}>
+              <li className="menu_title">Home</li>
+            </Link>
+
+
+            <Link className="menu__item" to={`/lista/${usuarioLogado.id}`}>
+              <li >Antecipar</li>
+            </Link>
+          </ul>
+        )}
+      </nav>
+    </aside>
+  );
 }
 
 export default Menu;

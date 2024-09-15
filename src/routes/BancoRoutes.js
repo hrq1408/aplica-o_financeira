@@ -6,14 +6,14 @@ import Historico from '../pages/Historico.js';
 import RouteSecuret from '../auth/RouteSecuret.js';
 
 const BancoRoutes = () => {
-  return (    
-      <Routes>
-        <Route path="/" element={<Bemvindo />} />
-        <Route element={<RouteSecuret />}>
-          <Route path="/home" element={<Home />} /> 
-          <Route path="/lista/:userId" element={<Historico />} />
-        </Route>
-      </Routes>
+  return (
+    <Routes>
+      <Route path="/" element={<Bemvindo />} />
+      <Route element={<RouteSecuret />}>
+        <Route path="/home" element={<Home />} />
+        <Route path="/lista/:userId" element={<Historico />} />
+      </Route>
+    </Routes>
   );
 }
 

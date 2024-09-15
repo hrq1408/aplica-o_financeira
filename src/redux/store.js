@@ -5,7 +5,7 @@ import transactionsReducer from './transactionsSlice'; // Importe o reducer de t
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    transactions: transactionsReducer 
+    transactions: transactionsReducer
   },
 });
 

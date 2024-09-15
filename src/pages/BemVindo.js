@@ -5,19 +5,19 @@ import Login from '../components/Login';
 
 
 function Bemvindo() {
-    const paragraphRefs = useRef([]);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-       
-      const handleClosePopup = () => {
-        setIsPopupOpen(false);
-      };    
-  
-    return (
+  const paragraphRefs = useRef([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-            <div>                  
-                <Login isOpen={isPopupOpen} onClose={handleClosePopup} />
-            </div>
-    );
-  }
-  
-  export default Bemvindo;
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  return (
+
+    <div>
+      <Login isOpen={isPopupOpen} onClose={handleClosePopup} />
+    </div>
+  );
+}
+
+export default Bemvindo;

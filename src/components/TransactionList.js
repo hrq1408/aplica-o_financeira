@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import { fetchTransacoesPorUsuario } from '../services/transactionService';
 
 const TransactionList = () => {
-  const { userId } = useParams(); 
+  const { userId } = useParams();
   const [transacoes, setTransacoes] = useState([]);
   useEffect(() => {
     fetchTransacoesPorUsuario(userId)
       .then(response => setTransacoes(response.data));
-  }, [userId]); 
+  }, [userId]);
 
   return (
     <div>

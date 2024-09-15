@@ -8,9 +8,10 @@
   padding: 30px;
   background: #e8e6ff
 }
-.saldo-conta{
+
+.saldo-conta {
   padding: 30px;
-  background: #f0f9ff;  
+  background: #f0f9ff;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -18,29 +19,7 @@
 .saldo-conta h2 {
   margin: 0;
   font-size: 36px;
-  color: blue; 
-}
-.sidebar {
-  width: 250px;
-  background-color: #28a745;
-  color: white;
-  
-}
-
-
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar nav ul li {
-  padding: 10px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.sidebar nav ul li:hover {
-  background-color: #218838; 
+  color: blue;
 }
 
 .main-content {
@@ -55,11 +34,12 @@
   margin-bottom: 30px;
 }
 
-.saldo-total, .status-b3 {
+.saldo-total,
+.status-b3 {
   text-align: right;
 }
 
-.dividendos {
+.home-conta {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -86,7 +66,8 @@
   border-collapse: collapse;
 }
 
-.tabela-lancamentos th, .tabela-lancamentos td {
+.tabela-lancamentos th,
+.tabela-lancamentos td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -94,34 +75,34 @@
 
 @media (max-width: 768px) {
   .main-content {
-    padding: 0px;   
+    padding: 0px;
   }
-  .saldo-conta{
+
+  .saldo-conta {
     width: 100%;
   }
-  .welcome-usuario {
-    width: 100%;
-  }
+
 
   .home-container {
     flex-direction: column;
   }
 
   .sidebar {
-    width: 100%; 
+    width: 100%;
   }
 
   .header {
-    flex-direction: column; 
-    align-items: flex-start; 
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .saldo-total, .status-b3 {
+  .saldo-total,
+  .status-b3 {
     text-align: left;
   }
 
   .dividendos {
-    flex-direction: column; 
-    align-items: flex-start; 
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

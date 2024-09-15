@@ -44,41 +44,41 @@ const TransactionFilter = ({ onFilterChange }) => {
 
       <label htmlFor="dataInicio">
         Data Inicial:
-        <input 
-          type="date" 
+        <input
+          type="date"
           id="dataInicio"
-          value={dataInicio} 
-          onChange={e => setDataInicio(e.target.value)} 
+          value={dataInicio}
+          onChange={e => setDataInicio(e.target.value)}
         />
       </label>
 
       <label htmlFor="dataFim">
         Data Final:
-        <input 
-          type="date" 
+        <input
+          type="date"
           id="dataFim"
-          value={dataFim} 
-          onChange={e => setDataFim(e.target.value)} 
+          value={dataFim}
+          onChange={e => setDataFim(e.target.value)}
         />
       </label>
 
       <label htmlFor="valorMin">
         Valor Mínimo:
-        <input 
-          type="number" 
+        <input
+          type="number"
           id="valorMin"
-          value={valorMin} 
-          onChange={e => setValorMin(e.target.value)} 
+          value={valorMin}
+          onChange={e => setValorMin(e.target.value)}
         />
       </label>
 
       <label htmlFor="valorMax">
         Valor Máximo:
-        <input 
-          type="number" 
+        <input
+          type="number"
           id="valorMax"
-          value={valorMax} 
-          onChange={e => setValorMax(e.target.value)} 
+          value={valorMax}
+          onChange={e => setValorMax(e.target.value)}
         />
       </label>
 

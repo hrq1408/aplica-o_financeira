@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '../../ui/Input';
 
 const LoginRegister = ({ email, senha, onChangeEmail, onChangeSenha, onSubmit, erro }) => {
-  console.log( 'LoginRegister', email );
+  console.log('LoginRegister', email);
   return (
     <form onSubmit={onSubmit}>
       <Input
