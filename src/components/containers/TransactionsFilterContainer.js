@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { fetchTransactions } from '../../services/transactionService';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
+import { featchBancoUsuarios  } from '../../api/api';
+import Menu from '../../components/Menu';
 
 const periods = [
   { label: '7 Dias', value: 7 },
@@ -22,6 +24,23 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
   const [maxValue, setMaxValue] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
   const { userId } = useParams();
+  const [usuarios, setUsuarios] = useState([]);
+  const [usuarioLogado, setUsuarioLogado] = useState(null);
+  
+
+  useEffect(() => {
+    featchBancoUsuarios ()
+      .then(response => {
+        setUsuarios(response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar usuários:', error);
+      });
+      const usuarioLocalStorage = localStorage.getItem('usuario');
+      if (usuarioLocalStorage) {
+        setUsuarioLogado(JSON.parse(usuarioLocalStorage));
+      }
+    }, []);
 
   useEffect(() => {
     const fetchAndSetTransactions = async () => {
@@ -78,11 +97,11 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
     onFilterChange(filteredTransactions); 
   }, [typeFilter, periodFilter, startDate, endDate, minValue, maxValue, sortOrder, transactions]);
 
-  return (
-    <div>
+  return (  
+    <div className="home-container">
+      <Menu />
       <div className="container-form">
         <label>
-          Tipo de Transferência:
           <Select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} options={[
             { label: 'Todos', value: '' },
             { label: 'TED', value: 'TED' },
@@ -143,9 +162,9 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
         </label>
       </div>
 
-      <ul>
+      <ul className="transaction-box">
         {filteredTransactions.map(transaction => (
-          <li key={transaction.id}>
+          <li className="transaction-box" key={transaction.id}>
             <p>Tipo: {transaction.tipo}</p>
             <p>Data: {transaction.data}</p>
             <p>Valor: R${transaction.valor}</p>

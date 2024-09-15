@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/pages/Transactions.css';
+import { featchBancoUsuarios  } from '../api/api';
+
 
 const Transactions = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [usuarios, setUsuarios] = useState([]);
+    const [usuarioLogado, setUsuarioLogado] = useState(null);
     const [formData, setFormData] = useState({
       cpf: '',
       nomefavorecido: '',
@@ -52,6 +56,23 @@ const Transactions = () => {
       alert("Compra confirmada!");
       togglePopup();
     };
+
+    useEffect(() => {
+      featchBancoUsuarios ()
+        .then(response => {
+          setUsuarios(response.data);
+        })
+        .catch(error => {
+          console.error('Erro ao buscar usuários:', error);
+        });
+        const usuarioLocalStorage = localStorage.getItem('usuario');
+        if (usuarioLocalStorage) {
+          setUsuarioLogado(JSON.parse(usuarioLocalStorage));
+        }
+      }, []);
+  
+    usuarioLogado && console.log(usuarios.find(usuario => usuario.id === usuarioLogado.id));
+  
   
     return (
       <div>
@@ -62,13 +83,16 @@ const Transactions = () => {
         {isOpen && (
           <div className="popup-overlay">
             <div className="popup">
-              <button className="close-popup-btn" onClick={togglePopup}>
+              <button className="fechar-button-login" onClick={togglePopup}>
                 X
-              </button>
+              </button>              
               {!isSubmitted ? (
                 <>
                   <h2>Realizar transação</h2>
-                  <p>Saldo da conta: R% 7,00</p>
+                  {usuarios.find(usuario => usuario.id === usuarioLogado.id) && ( 
+                  <p>Saldo da conta: R$ {usuarios.find(usuario => usuario.id === usuarioLogado.id).saldo?.toFixed(2) || '0.00'}</p>
+                )}
+
                   <form className="cadastro-form" onSubmit={handleSubmit}>
                   <label>
                       CPF:

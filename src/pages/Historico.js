@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TransactionsFilterContainer from '../components/containers/TransactionsFilterContainer';
 import TransactionList from '../components/feature/history/TransactionList';
+import '../styles/pages/Historico.css';
 
 const History = () => {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
@@ -12,8 +13,7 @@ const History = () => {
   };
 
   return (
-    <div>
-      <h1>Lista de Transações</h1>
+    <div>      
       <TransactionsFilterContainer onFilterChange={handleFilterChange} />      
     </div>
   );

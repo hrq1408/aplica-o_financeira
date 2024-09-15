@@ -24,7 +24,7 @@ const LoginRegister = ({ email, senha, onChangeEmail, onChangeSenha, onSubmit, e
         required
       />
       {erro && <div className="error">{erro}</div>}
-      <button type="submit">Login</button>
+      <button className="button-login" type="submit">Login</button>
     </form>
   );
 };

@@ -9,7 +9,7 @@ export const login = async (email, senha) => {
         email: email,
         senha: senha 
       }
-    });
+    });    
 
     if (response.data.length > 0) {
       const usuario = response.data[0];
@@ -25,5 +25,17 @@ export const login = async (email, senha) => {
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     throw new Error('Ocorreu um erro ao fazer login. Tente novamente mais tarde.');
+  }
+
+  
+};
+
+export const updateUserBalance = async (userId, newBalance) => { 
+  try {
+    const response = await axios.patch(`${API_URL}/usuarios/${userId}`, { saldo: newBalance });
+    return response.data; 
+  } catch (error) {
+    console.error('Erro ao atualizar o saldo do usuário:', error);
+    throw error; 
   }
 };

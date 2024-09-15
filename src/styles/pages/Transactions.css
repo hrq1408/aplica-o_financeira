@@ -1,4 +1,3 @@
-/* src/components/PopupCadastro.css */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -9,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999; /* Para garantir que o pop-up apareça acima de outros elementos */
+    z-index: 9999;
   }
   
   .popup {
@@ -20,7 +19,7 @@
     height: 90%;
     max-width: 800px;
     max-height: 600px;
-    overflow: auto; /* Adiciona barra de rolagem se necessário */
+    overflow: auto;
     position: relative;
   }
   
@@ -33,23 +32,50 @@
     font-size: 20px;
     color: black;
     cursor: pointer;
-    z-index: 10000; /* Garantir que o botão fique acima de outros elementos */
+    z-index: 10000; 
+  }
+
+  .fechar-button-login {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: rgb(16, 3, 255);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
   }
   
   .cadastro-form {
-    display: flex;
-    flex-direction: column;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5em;
+    padding-bottom: 15px;
+    position: relative;
+    text-align: left;
+    color: #4c4e4e;
+    font-family: 'open_sansbold';
+    margin-left: 10px;
+    margin-bottom: 35px;
   }
   
   .cadastro-form label {
-    margin-bottom: 10px;
+    display: block;
+    margin-bottom: 5px;
   }
   
   .cadastro-form input {
-    margin-top: 5px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px 0 10px 16px;
+    font-family: "Open Sans", sans;
+    font-size: 23px;
+    font-weight: 400;
+    color: #18025a;
+    background: #f0ec082b;
+    border: 0;
+    border-radius: 3px;
+    outline: 0;
+    transition: all .3s ease-in-out;
   }
   
   .edit-popup-btn,
