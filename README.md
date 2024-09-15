@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Aplicação Banco (em desenvolvimento)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma aplicação web em React para consultar o saldo da conta e faça transferencia em pix.A aplicação permitirá aos usuários visualizar seu saldo, filtrar e ordenar as informações, além de acessar outras funcionalidades relacionadas à sua conta.
 
-## Available Scripts
+## Funcionalidades (em desenvolvimento):
 
-In the project directory, you can run:
+### Autenticação:
+- Login e registro de usuários.
+- Proteção de rotas que exigem autenticação.
 
-### `npm start`
+### Página Inicial (Dashboard):
+- Mensagem de boas-vindas personalizada com o nome do usuário.
+- Exibição do saldo total de dividendos recebidos no ano.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Pagina de filtro de transações (Dashboard):
+- Ordenação dos lançamentos por data, tipo, data inicial a final, valor minimo, data.
+- Detalhes de cada lançamento, incluindo informações específicas para TED e PIX.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Realizar Transações:
+- Formulário para inserir dados da transação (CPF, nome do favorecido, banco, agência, conta, chave PIX, valor e data).
+- Resumo da transação para confirmação antes do envio.
+- Integração com API para registro da transação e atualização do saldo (em desenvolvimento).
 
-### `npm test`
+## Tecnologias Utilizadas:
+- **React**: Biblioteca JavaScript para construção de interfaces de usuário.
+- **React Router**: Gerenciamento de rotas na aplicação.
+- **Axios**: Realização de requisições HTTP para a API (ou API mock).
+- **JSON Server** (opcional): Criação de uma API mock para desenvolvimento e testes.
+- **Redux Toolkit** (opcional): Gerenciamento de estado global da aplicação.
+- **CSS Modules**: Estilização da aplicação.
+- **Jest e React Testing Library**: Testes unitários e de integração.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Estrutura do Projeto:
+A estrutura de pastas segue os princípios do SOLID, promovendo a separação de responsabilidades e a modularidade do código.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **src/api**: Lógica de comunicação com a API (ou API mock).
+- **src/assets**: Imagens, ícones, fontes, etc.
+- **src/components**: Componentes reutilizáveis da UI.
+  - **ui**: Componentes puramente visuais.
+  - **containers**: Componentes que conectam a UI com a lógica e o estado.
+  - **features**: Componentes específicos para cada funcionalidade.
+- **src/context** ou **src/redux**: Gerenciamento de estado global.
+- **src/hooks**: Hooks customizados.
+- **src/pages**: Páginas principais da aplicação.
+- **src/routes**: Configuração de rotas.
+- **src/services**: Lógica de negócio e funções auxiliares.
+- **src/styles**: Arquivos de estilo CSS.
+- **src/utils**: Funções auxiliares genéricas.
+- **src/App.jsx**: Componente principal da aplicação.
+- **src/index.jsx**: Ponto de entrada da aplicação.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Como Executar o Projeto:
 
-### `npm run eject`
+### Clonar o repositório:
+```bash
+git clone https://github.com/hrq1408/aplica-o_financeira
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Instalar depenências 
+Instalar as dependências:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+cd seu_repositorio
+npm install
+# ou
+yarn install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Iniciar a API mock:
+npm json-server --watch db.json --port 3001
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Iniciar o projeto
+npm start
+# ou
+yarn start
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Acessar a aplicação:
+Abra o navegador e acesse http://localhost:3000.
+ 

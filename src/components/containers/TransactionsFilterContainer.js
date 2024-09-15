@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,  useMemo } from "react";
 import { useParams } from 'react-router-dom';
 import { fetchTransactions } from '../../services/transactionService';
 import Input from '../ui/Input';
@@ -15,7 +15,7 @@ const periods = [
 
 const TransactionsFilterContainer = ({ onFilterChange }) => {
   const [transactions, setTransactions] = useState([]);
-  const [filteredTransactions, setFilteredTransactions] = useState([]);
+  
   const [typeFilter, setTypeFilter] = useState('');
   const [periodFilter, setPeriodFilter] = useState(null);
   const [startDate, setStartDate] = useState('');
@@ -26,6 +26,40 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
   const { userId } = useParams();
   const [usuarios, setUsuarios] = useState([]);
   const [usuarioLogado, setUsuarioLogado] = useState(null);
+
+  const filteredTransactions = useMemo(() => {
+    let filtered = transactions;
+
+    if (typeFilter) {
+      filtered = filtered.filter(transaction => transaction.tipo.toLowerCase().trim() === typeFilter.toLowerCase().trim());
+    }
+
+    if (periodFilter) {
+      const periodDate = new Date();
+      periodDate.setDate(periodDate.getDate() - periodFilter);
+      filtered = filtered.filter(transaction => new Date(transaction.data) >= periodDate);
+    }
+
+    if (startDate && endDate) {
+      filtered = filtered.filter(transaction => 
+        new Date(transaction.data) >= new Date(startDate) &&
+        new Date(transaction.data) <= new Date(endDate)
+      );
+    }
+
+    if (minValue) {
+      filtered = filtered.filter(transaction => transaction.valor >= parseFloat(minValue));
+    }
+    if (maxValue) {
+      filtered = filtered.filter(transaction => transaction.valor <= parseFloat(maxValue));
+    }
+
+    return filtered.sort((a, b) => {
+      return sortOrder === 'asc' 
+        ? new Date(a.data) - new Date(b.data) 
+        : new Date(b.data) - new Date(a.data);
+    });
+  }, [transactions, typeFilter, periodFilter, startDate, endDate, minValue, maxValue, sortOrder]);
 
 
   useEffect(() => {
@@ -47,7 +81,7 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
       try {
         const data = await fetchTransactions(userId);
         setTransactions(data);
-        setFilteredTransactions(data);
+        
       } catch (error) {
         // Handle error appropriately
       }
@@ -90,7 +124,7 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
           : new Date(b.data) - new Date(a.data);
       });
 
-      setFilteredTransactions(filtered);
+      
     };
 
     filterTransactions();
@@ -163,7 +197,7 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
       </div>
 
       <ul className="transaction-box">
-        {filteredTransactions.map(transaction => (
+        {Array.isArray(filteredTransactions) && filteredTransactions.map(transaction => (
           <li className="transaction-box" key={transaction.id}>
             <p>Tipo: {transaction.tipo}</p>
             <p>Data: {transaction.data}</p>

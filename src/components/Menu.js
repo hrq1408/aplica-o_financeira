@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import '../styles/components/Menu.css';
+import Logout from '../components/Logout';
 
 const Menu = () => {
 
@@ -33,9 +34,12 @@ const Menu = () => {
             <Link className="menu__item" to={`/lista/${usuarioLogado.id}`}>
               <li >Antecipar</li>
             </Link>
+
+            
           </ul>
         )}
       </nav>
+      <Logout className="menu__item" />
     </aside>
   );
 }
