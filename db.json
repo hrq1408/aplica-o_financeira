@@ -39,6 +39,14 @@
         "senha": "senha_segura_carlos", 
         "saldo": 9700.00,
         "senhaTransacao": "7890" 
+      },
+      {
+        "id": 6,
+        "nome": "Amanda teste",
+        "email": "admin@admin.com",
+        "senha": "admin", 
+        "saldo": 2435.18,
+        "senhaTransacao": "7892" 
       }
     ],
     "transacoes": [
@@ -107,6 +115,48 @@
         "nome_favorecido": "Ana Pereira",
         "chave_pix": "ana@email.com",
         "valor": 300.00
-      }      
+      },
+      {
+        "id": 7,
+        "tipo": "TED",
+        "data": "2023-02-20",
+        "remetente": 6, 
+        "cpf_cnpj_favorecido": "56789012345",
+        "nome_favorecido": "Carlos Rodrigues",
+        "banco_favorecido": "104",
+        "agencia_favorecido": "8765",
+        "conta_favorecido": "54321-0",
+        "valor": 2000.00
+      },
+      {
+        "id": 8,
+        "tipo": "PIX",
+        "data": "2023-03-04",
+        "remetente": 6,
+        "cpf_cnpj_favorecido": "67890123456",
+        "nome_favorecido": "John teste",
+        "chave_pix": "56456485465",
+        "valor": 435.18
+      },
+      {
+        "id": 9,
+        "tipo": "PIX",
+        "data": "2023-10-23",
+        "remetente": 6,
+        "cpf_cnpj_favorecido": "678901234545",
+        "nome_favorecido": "Jara teste",
+        "chave_pix": "564564854564",
+        "valor": 2400.00
+      },
+      {
+        "id": 10,
+        "tipo": "PIX",
+        "data": "2023-11-04",
+        "remetente": 6,
+        "cpf_cnpj_favorecido": "678901234545",
+        "nome_favorecido": "Rodrigo teste",
+        "chave_pix": "564564854564",
+        "valor": 2400.00
+      }
     ]
   }

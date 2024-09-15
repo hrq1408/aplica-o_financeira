@@ -136,6 +136,7 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
       <Menu />
       <div className="container-form">
         <label>
+          Tipo
           <Select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} options={[
             { label: 'Todos', value: '' },
             { label: 'TED', value: 'TED' },
@@ -144,7 +145,7 @@ const TransactionsFilterContainer = ({ onFilterChange }) => {
         </label>
 
         <label>
-          Período:
+          Período
           <Select value={periodFilter || ''} onChange={e => setPeriodFilter(Number(e.target.value) || null)} options={[
             { label: 'Selecionar', value: '' },
             ...periods

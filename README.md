@@ -75,4 +75,10 @@ yarn start
 
 ### Acessar a aplicação:
 Abra o navegador e acesse http://localhost:3000.
+
+
+###Usuário para logar
+
+Login: admin@admin.com
+Senha: admin
  
